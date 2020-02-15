@@ -1,28 +1,9 @@
+<?php include 'header.php' ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Research Realm</title>
-  </head>
+  <?php head() ?>
   <body>
-    <header>
-      <nav>
-        <a href="#">
-          <img alt="Research Realm" src="logo.png" />
-        </a>
-        <div id="filter">
-          <form method="POST" action="/">
-            <label for="department">Department/Département</label>
-            <select id="department">
-              <option value="cosc">Computer Science / Sciences Informatiques</option>
-              <option value="kin">Kinesiology / Kinésiologie</option>
-              <option value="psych">Psychology / Psychologie</option>
-            </select>
-            <input type="reset" value="Reset" />
-            <input type="submit" value="Submit" name="department" />
-          </form>
-        </div>
-        </nav>
-      </header>
+      <?php nav_bar() ?>
       <section id="projects">
       <?php
         $title = "Title";
@@ -30,12 +11,12 @@
         $call_for_action = "Call for Action";
         for ($i = 0; $i < 4; $i++)
         {
-            project($department . $i, $title . $i, $call_for_action . $i);
+            display_project_list_item($department . $i, $title . $i, $call_for_action . $i);
             print "<hr />\n";
         }
-        project($department . 5, $title . 5, $call_for_action . 5);
+        display_project_list_item($department . 5, $title . 5, $call_for_action . 5);
       ?>
-      <?php function project($department, $title, $call_for_action) 
+      <?php function display_project_list_item($department, $title, $call_for_action) 
       { 
       ?>
 
