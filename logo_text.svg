@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="200"
+   viewBox="0 0 105.83333 52.916666"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="logo_text.svg"
+   inkscape:export-filename="/home/pjt/Classes/2020W/cosc2206/Project/assets/logo_text.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0706831"
+     inkscape:cx="13.757615"
+     inkscape:cy="30.054372"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     width="400px"
+     inkscape:window-width="960"
+     inkscape:window-height="1016"
+     inkscape:window-x="960"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid39" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-244.08333)">
+    <g
+       inkscape:label="Layer 2"
+       id="layer2"
+       transform="matrix(9.9228362,0,0,9.9228362,-4.5291609,249.52807)">
+      <g
+         inkscape:label="Layer 2"
+         id="layer2-3"
+         transform="matrix(0.93447543,0,0,0.93447543,0.26969955,0.16406005)">
+        <path
+           id="path3726"
+           transform="scale(0.26458333)"
+           d="M 7.4375,0.875 A 3.6249999,3.5781248 0 0 0 3.8125,4.453125 3.6249999,3.5781248 0 0 0 7.4375,8.03125 3.6249999,3.5781248 0 0 0 11.0625,4.453125 3.6249999,3.5781248 0 0 0 7.4375,0.875 Z M 7.46875,1.3125 A 3.28125,3.1718751 0 0 1 10.75,4.484375 3.28125,3.1718751 0 0 1 7.46875,7.65625 3.28125,3.1718751 0 0 1 4.1875,4.484375 3.28125,3.1718751 0 0 1 7.46875,1.3125 Z"
+           style="stroke-width:1.44062257"
+           inkscape:connector-curvature="0" />
+        <rect
+           y="2.1083984"
+           x="1.9031695"
+           height="1.7076921"
+           width="0.17129754"
+           id="rect3732"
+           style="fill:#000000;stroke-width:0.28561366" />
+        <rect
+           transform="rotate(-37.561249)"
+           style="fill:#000000;stroke-width:0.3521736"
+           id="rect139"
+           width="0.20818269"
+           height="2.1363466"
+           x="0.7669459"
+           y="3.0583322" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="37.105431"
+       y="277.54303"
+       id="text91"><tspan
+         sodipodi:role="line"
+         id="tspan89"
+         x="37.105431"
+         y="277.54303"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;font-family:B612;-inkscape-font-specification:B612;stroke-width:0.26458332">Research Realm</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="29.691938"
+       y="264.43698"
+       id="text95"><tspan
+         sodipodi:role="line"
+         id="tspan93"
+         x="29.691938"
+         y="264.43698"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;font-family:b612;-inkscape-font-specification:b612;stroke-width:0.26458332">Réseau Recherche</tspan></text>
+  </g>
+</svg>
