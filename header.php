@@ -4,6 +4,7 @@ function head()
 ?>
 <head>
   <title>Research Realm</title>
+  <link rel="shortcut icon" href="logo.png" />
 </head>
 <?php
 }
