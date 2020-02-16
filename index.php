@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php head() ?>
-  <body>
+  <body class="mh2 ">
       <?php nav_bar() ?>
       <section id="projects">
       <?php

@@ -19,11 +19,11 @@ else if (isset($_GET['department']))
   }
   else {
     print "<p>No projects for " . $_GET['department'] . ".</p>";
+    print "<p>Il n'y a pas de projects pour " . $_GET['department'] . ".</p>"; 
   }
   db_close($conn);
 }
 else {
-  print "else";
   $conn = db_connect();
   $result = get_projects($conn);
   if ($result->num_rows > 0)

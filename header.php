@@ -6,6 +6,13 @@ function head()
   <meta charset="utf-8" />
   <title>Research Realm</title>
   <link rel="shortcut icon" href="logo.png" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@^4.11.1/css/tachyons.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=B612:400,400i,700,700i&display=swap" rel="stylesheet"> 
+  <style>
+    body {
+      font-family: 'B612', sans-serif;
+    }
+  </style>
 </head>
 <?php
 }
@@ -24,11 +31,11 @@ $department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
 <header>
-      <nav>
-        <a href="/project">
-          <img alt="Research Realm" src="logo.png" />
+      <nav class="db">
+        <a class="dib mt2" href="/project">
+          <img class="dib" alt="Research Realm" src="logo.png" />
         </a>
-        <div id="filter">
+        <div id="filter" class="dib">
           <form method="GET" action="index.php">
             <label for="department">Department/Département</label>
             <select id="department" name="department">
