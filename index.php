@@ -1,5 +1,5 @@
-<?php include 'header.php' ?>
-<?php include 'project.php' ?>
+<?php require_once("header.php"); ?>
+<?php require_once("project.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php head() ?>

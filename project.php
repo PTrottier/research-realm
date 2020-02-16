@@ -1,11 +1,35 @@
+<?php require_once("db.php"); ?>
 <?php 
 function project_section() {
 if (isset($_GET['id']))
 {
-    project("Department", "Title", "Call for Action", "Abstract", "Author", "Reviewer");
+  $id = $_GET['id'];
+  $conn = db_connect();
+  $project = get_project($conn, $id);
+  project($project['department'], $project['title'], $project['call_for_action'], $project['abstract'], $project['author'], $project['reviewer']);
+  db_close($conn);
+}
+else if (isset($_GET['department']))
+{
+  $conn = db_connect();
+  $result = get_projects_by_department($conn, $_GET['department']);
+  if ($result->num_rows > 0) {
+    while ($project = $result->fetch_assoc())
+      display_project_list_item($project["id"], $project["department"], $project["title"], $project["call_for_action"]);
+  }
+  else {
+    print "<p>No projects for " . $_GET['department'] . ".</p>";
+  }
+  db_close($conn);
 }
 else {
-    display_projects(5);
+  print "else";
+  $conn = db_connect();
+  $result = get_projects($conn);
+  if ($result->num_rows > 0)
+    while ($project = $result->fetch_assoc())
+      display_project_list_item($project["id"], $project["department"], $project["title"], $project["call_for_action"]);
+  db_close($conn);
 }
 }
 ?>
@@ -13,8 +37,8 @@ else {
     {
     ?>
     <article>
-      <h1><?php print $title ?></h1>
-      <h2><?php print $department ?></h2>
+      <h2><?php print $title ?></h2>
+      <h3><?php print $department ?></h3>
       <p><?php print $call_for_action ?></p>
       <p><?php print $abstract ?></p>
       <p><?php print $author ?></p>
@@ -24,11 +48,11 @@ else {
     }
     ?>
 
-<?php function display_project_list_item($department, $title, $call_for_action) 
+<?php function display_project_list_item($id, $department, $title, $call_for_action) 
 { 
 ?>
 
-        <a href="index.php?id=5">
+	<a href="index.php?id=<?php print $id ?>">
           <article>
             <h2><?php print $title ?></h2>
             <h3><?php print $department ?></h3>
