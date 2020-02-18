@@ -4,6 +4,7 @@ function head()
 ?>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Research Realm</title>
   <link rel="shortcut icon" href="logo.png" />
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@^4.11.1/css/tachyons.min.css" />
