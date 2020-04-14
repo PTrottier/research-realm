@@ -1,16 +1,19 @@
 <?php
 
 function db_connect() {
-    $host_name = 'localhost';
-    $user_name = 'realm';
-    $password  = 'research';
-    $db_name = 'research_realm';
-    $conn = new mysqli( $host_name, $user_name, $password, $db_name );
-    if ( $conn->connect_error ) {
+    $config = parse_ini_file("../realm.ini", true);
+
+    // Prepare the database
+    $hostname = "{$config["mysql"]["hostname"]}:{$config["mysql"]["port"]}";
+    $username = $config["mysql"]["username"];
+    $password = $config["mysql"]["password"];
+    $database = $config["mysql"]["database"];
+
+    $conn = new mysqli($hostname, $username, $password, $database);
+    
+    if ($conn->connect_error) {
         die( 'Connection failed: ' . $conn->connect_error );
     }
-    // For French
-    $charset = $conn->set_charset( 'utf8' );
     return $conn;
 }
 

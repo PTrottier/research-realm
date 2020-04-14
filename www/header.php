@@ -33,8 +33,8 @@ $department = isset($_GET["department"]) ? $_GET["department"] : "";
 
 <header>
       <nav class="db">
-        <a class="dib mt2" href="/project">
-          <img class="dib" alt="Research Realm" src="logo.png" />
+        <a class="dib mt2" href="/">
+          <img class="dib" alt="Research Realm" src="logo_text.svg" />
         </a>
         <div id="filter" class="dib">
           <form method="GET" action="index.php">
