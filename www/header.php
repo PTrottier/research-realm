@@ -20,40 +20,51 @@ function head()
 ?>
 
 <?php
-function select($department, $value)
+function select($current, $value)
 {
-  if ($department === $value)
+  if ($current === $value)
     print 'selected = "selected"';
 }
 
-function nav_bar()
+function nav_bar($is_admin)
 {
+$language = isset($_GET["language"]) ? $_GET["language"] : "";
 $department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
 <header>
-      <nav class="flex flex-column flex-row-l items-center-ns justify-between-ns">
-        <a class="dib mw5-ns" href="/">
-          <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
-        </a>
-        <div id="filter" class="dib">
-          <form method="GET" action="index.php">
-            <label for="language">Language/Langue</label>
-            <select id="language" name="language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-            </select>
-            <label for="department">Department/Département</label>
-            <select id="department" name="department">
-              <option value="cosc" <?php select($department, "cosc") ?>>Computer Science / Sciences Informatiques</option>
-              <option value="kin" <?php select($department, "kin") ?>>Kinesiology / Kinésiologie</option>
-              <option value="psych" <?php select($department, "psych") ?>>Psychology / Psychologie</option>
-            </select>
-            <input type="reset" value="Reset" />
-            <input type="submit" value="Submit" />
-          </form>
+<?php
+    if ($is_admin) {
+?>
+        <div class="flex flex-column flex-row-l items-center-ns justify-between-ns ma0 pa2 bg-light-red black tc ba b--dashed bw1">
+            <p class="dib ma0">Administration</p>
+            <a class="w-100 w-auto-l mt2 mt0-l link black pa2 ba bw1" href="#">Sign out</a>
         </div>
-      </nav>
+<?php
+    }
+?>
+    <nav class="flex flex-column flex-row-l items-center justify-between-l">
+        <a class="dib mw5" href="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
+        </a>
+        <form class="w-100 w-auto-l" id="filters" method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <div class="flex flex-column flex-row-l items-center-l">
+                <label class="mr1-l" for="language">Language</label>
+                <select id="language" class="mb2 mb0-l mr3-l" name="language">
+                    <option value="en" <?php select($language, "en") ?>>English</option>
+                    <option value="fr" <?php select($language, "fr") ?>>Français</option>
+                </select>
+                <label class="mr1-l" for="department">Department</label>
+                <select id="department" name="department">
+                    <option value="cosc" <?php select($department, "cosc") ?>>Computer Science</option>
+                    <option value="kin" <?php select($department, "kin") ?>>Kinesiology</option>
+                    <option value="psych" <?php select($department, "psych") ?>>Psychology</option>
+                </select>
+                <input id="btn-reset" type="reset" value="Reset" />
+                <input id="btn-submit" type="submit" value="Submit" />
+            </div>
+        </form>
+    </nav>
 </header>
 
 <?php

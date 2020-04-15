@@ -4,7 +4,7 @@
 <html lang="en">
     <?php head() ?>
     <body class="ma2">
-        <?php nav_bar(false) ?>
+        <?php nav_bar(true) ?>
         <section id="projects">
             <?php //project_section(); ?>
         </section>
