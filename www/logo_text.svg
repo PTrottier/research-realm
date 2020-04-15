@@ -14,8 +14,8 @@
    viewBox="0 0 105.83333 52.916666"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="logo_text.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="logo_text_2.svg"
    inkscape:export-filename="/home/pjt/Classes/2020W/cosc2206/Project/assets/logo_text.png"
    inkscape:export-xdpi="200"
    inkscape:export-ydpi="200">
@@ -36,11 +36,11 @@
      showgrid="true"
      units="px"
      width="400px"
-     inkscape:window-width="960"
+     inkscape:window-width="1920"
      inkscape:window-height="1016"
-     inkscape:window-x="960"
+     inkscape:window-x="1920"
      inkscape:window-y="27"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      inkscape:snap-global="false">
     <inkscape:grid
        type="xygrid"
@@ -54,7 +54,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -97,12 +97,12 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="37.105431"
+       x="38.163765"
        y="277.54303"
        id="text91"><tspan
          sodipodi:role="line"
          id="tspan89"
-         x="37.105431"
+         x="38.163765"
          y="277.54303"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;font-family:B612;-inkscape-font-specification:B612;stroke-width:0.26458332">Research Realm</tspan></text>
     <text
