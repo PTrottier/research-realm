@@ -32,8 +32,8 @@ $department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
 <header>
-      <nav class="flex items-center justify-between">
-        <a class="dib mw5" href="/">
+      <nav class="flex flex-column flex-row-l items-center-ns justify-between-ns">
+        <a class="dib mw5-ns" href="/">
           <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
         </a>
         <div id="filter" class="dib">
