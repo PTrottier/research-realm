@@ -13,6 +13,10 @@ function head()
     body {
       font-family: 'B612', sans-serif;
     }
+
+    #logo {
+        width: 50%;
+    }
   </style>
 </head>
 <?php
@@ -33,11 +37,16 @@ $department = isset($_GET["department"]) ? $_GET["department"] : "";
 
 <header>
       <nav class="db">
-        <a class="dib mt2" href="/project">
-          <img class="dib" alt="Research Realm" src="logo.png" />
+        <a class="dib mt2" href="/">
+          <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
         </a>
         <div id="filter" class="dib">
           <form method="GET" action="index.php">
+            <label for="language">Language/Langue</label>
+            <select id="language" name="language">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
             <label for="department">Department/Département</label>
             <select id="department" name="department">
               <option value="cosc" <?php select($department, "cosc") ?>>Computer Science / Sciences Informatiques</option>
