@@ -13,10 +13,6 @@ function head()
     body {
       font-family: 'B612', sans-serif;
     }
-
-    #logo {
-        width: 50%;
-    }
   </style>
 </head>
 <?php
@@ -36,8 +32,8 @@ $department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
 <header>
-      <nav class="db">
-        <a class="dib mt2" href="/">
+      <nav class="flex items-center justify-between">
+        <a class="dib mw5" href="/">
           <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
         </a>
         <div id="filter" class="dib">
