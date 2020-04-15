@@ -26,23 +26,13 @@ function select($current, $value)
     print 'selected = "selected"';
 }
 
-function nav_bar($is_admin)
+function nav_bar()
 {
 $language = isset($_GET["language"]) ? $_GET["language"] : "";
 $department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
 <header>
-<?php
-    if ($is_admin) {
-?>
-        <div class="flex flex-column flex-row-l items-center-ns justify-between-ns ma0 pa2 bg-light-red black tc ba b--dashed bw1">
-            <p class="dib ma0">Administration</p>
-            <a class="w-100 w-auto-l mt2 mt0-l link black pa2 ba bw1" href="#">Sign out</a>
-        </div>
-<?php
-    }
-?>
     <nav class="flex flex-column flex-row-l items-center justify-between-l">
         <a class="dib mw5" href="<?php echo $_SERVER['PHP_SELF']; ?>">
             <img id="logo" class="dib" alt="Research Realm" src="logo_text.svg" />
