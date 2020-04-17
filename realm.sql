@@ -1,10 +1,9 @@
 \! echo "Initializing Research Realm tables...\n"
 
-CREATE DATABASE IF NOT EXISTS realm;
+CREATE DATABASE IF NOT EXISTS realm CHARACTER SET utf8mb4;
 USE realm;
 
 \! echo "Creating Department tables:"
-
 CREATE TABLE IF NOT EXISTS Language (
     id          INT             UNIQUE NOT NULL AUTO_INCREMENT,
     shortcode   VARCHAR(2)      NOT NULL,
