@@ -3,7 +3,26 @@
 <?php require_once("translations.php"); ?>
 
 <?php
-/* Handle authentication */
+
+// Handle new project
+if (isset($_POST["add-project"])) {
+    // Get project information
+    $language = $_POST["language"];
+    $title = $_POST["title"];
+    $researcher = $_POST["title"];
+    $department = $_POST["department"];
+    $call_to_action = $_POST["call_to_action"];
+
+    add_project($language, $title, $researcher, $department, $call_to_action);
+}
+
+// Handle delete
+if (isset($_POST["delete-project"])) {
+    // Get project identifier
+    $id = $_POST["project"];
+
+    delete_project($id);
+}
 
 // Handle sign out
 if (isset($_POST["signout"])) {
@@ -14,40 +33,39 @@ if (isset($_POST["signout"])) {
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
-session_start();
-// Determine whether the credentials have already been submitted
-if (!isset($_SESSION["username"]) 
-    || !isset($_SESSION["password"])
-    || !is_valid_administrator($_SESSION["username"], $_SESSION["password"])) {
+handle_authentication();
 
-    // Determine whether the credentials were submitted
-    if (isset($_POST["username"]) && isset($_POST["password"])) {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+function handle_authentication() {
+    session_start();
+    // Determine whether the credentials have already been submitted
+    if (!isset($_SESSION["username"]) 
+        || !isset($_SESSION["password"])
+        || !is_valid_administrator($_SESSION["username"], $_SESSION["password"])) {
 
-        // Determine whether the credentials were valid
-        if (is_valid_administrator($username, $password)) {
-            session_start();
-            $_SESSION = array();
-            $_SESSION["username"] = $username;
-            $_SESSION["password"] = $password;
-            // Refresh page to use Session
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+        // Determine whether the credentials were submitted
+        if (isset($_POST["username"]) && isset($_POST["password"])) {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            // Determine whether the credentials were valid
+            if (is_valid_administrator($username, $password)) {
+                $_SESSION = array();
+                $_SESSION["username"] = $username;
+                $_SESSION["password"] = $password;
+                // Refresh page to use Session
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                show_administration_login(true);
+            }
         } else {
-            show_administration_login(true);
+            show_administration_login(false);
         }
     } else {
-        show_administration_login(false);
+        show_administration_mode();
     }
-} else {
-    show_administration_mode();
 }
 
-?>
-
-<?php
-function is_valid_administrator($username, $password)
-{
+function is_valid_administrator($username, $password) {
     // The user must prove that it is valid administrator, therefore by default it is invalid
     $is_valid = false;
     // Get configuration file for adminitration information
@@ -72,7 +90,7 @@ function show_administration_login($is_invalid)
     <?php head(translate_string($GLOBALS["language"], "administration")); ?>
     <body class="mh2">
         <div class="app">
-            <div class="h3 flex flex-column flex-row-l items-center-ns justify-between-ns mt2 pa2 bg-light-red black tc ba b--dashed bw1">
+            <div class="flex flex-column flex-row-l items-center-ns justify-between-ns mt2 pa2 bg-light-red black tc ba b--dashed bw1">
                 <h1 class="f3 dib mv2 ma0-l"><?php translate($GLOBALS["language"], "administration"); ?></h1>
                 <form class="w-100 w-auto-l" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="flex flex-column flex-row-l items-center-l">
@@ -84,14 +102,14 @@ function show_administration_login($is_invalid)
                 <?php
                 if ($is_invalid) {
                 ?>
-                    <p class="dib ma0"><?php translate($GLOBALS["language"], "invalid_credentials"); ?></p>
+                    <p class="dib mb1 mt3 ma0-l"><?php translate($GLOBALS["language"], "invalid_credentials"); ?></p>
                 <?php
                 }
                 ?>
             </div>
             <?php nav_bar(); ?>
             <section id="projects">
-                <?php display_projects($GLOBALS["language"], $GLOBALS["department"]); ?>
+                <?php display_projects($GLOBALS["language"], $GLOBALS["department"], false); ?>
             </section>
         </div>
         <script src="filters.js"></script>
@@ -110,7 +128,7 @@ function show_administration_mode()
     <?php head(translate_string($GLOBALS["language"], "administration")); ?>
     <body class="mh2">
         <div class="app">
-            <div class="h3 flex flex-column flex-row-l items-center-ns justify-between-ns mt2 pa2 bg-light-red black tc ba b--dashed bw1">
+            <div class="flex flex-column flex-row-l items-center-ns justify-between-ns mt2 pa2 bg-light-red black tc ba b--dashed bw1">
                 <h1 class="f3 dib mv2 ma0-l"><?php translate($GLOBALS["language"], "administration"); ?></h1>
                 <form class="w-100 w-auto-l" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="flex flex-column flex-row-l items-center-l">
@@ -122,11 +140,21 @@ function show_administration_mode()
             <?php nav_bar() ?>
             <section id="projects">
                 <form class="w-100 w-auto-l mb2 mb0" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <article class="flex flex-column items-start-l mw100 center ba bw1 ph3 pv2 mv2">
-                        <input class="w-100 mv2" type="text" placeholder="<?php translate($GLOBALS["language"], "project_title"); ?>" required="required" />
-                        <input class="w-100 w-auto-l mv2" type="text" placeholder="<?php translate($GLOBALS["language"], "researcher"); ?>" required="required" />
-                        <label class="mr1-l mt1" for="department"><?php translate($GLOBALS["language"], "department"); ?></label>
-                        <select class="w-100 w-auto-l mb1" name="department">
+                    <article class="flex flex-column items-start-l mw100 center ba bw2 ph3 pv2 mv2">
+                        <label class="mt1" for="language"><?php translate($GLOBALS["language"], "language"); ?></label>
+                        <select name="language" class="w-100 w-auto-l mb2">
+<?php
+foreach (get_languages() as $language) {
+?>
+                            <option value="<?php print $language->shortcode ?>" <?php select($GLOBALS["language"], $language->shortcode) ?>><?php print $language->name ?></option>
+<?php
+}
+?>
+                        </select>
+                        <input name="title" class="w-100 mv2" type="text" placeholder="<?php translate($GLOBALS["language"], "project_title"); ?>" required="required" />
+                        <input name="researcher" class="w-100 w-auto-l mv2" type="text" placeholder="<?php translate($GLOBALS["language"], "researcher"); ?>" required="required" />
+                        <label class="mt1" for="department"><?php translate($GLOBALS["language"], "department"); ?></label>
+                        <select name="department" class="w-100 w-auto-l mb2">
 <?php
 foreach (get_departments($GLOBALS["language"]) as $department) {
 ?>
@@ -135,11 +163,11 @@ foreach (get_departments($GLOBALS["language"]) as $department) {
 }
 ?>
                         </select>
-                        <textarea class="w-100 mv2" placeholder="<?php translate($GLOBALS["language"], "call_to_action"); ?>" required="required"></textarea>
-                        <input class="mv2" type="submit" value="<?php translate($GLOBALS["language"], "add_project"); ?>" />
+                        <textarea name="call_to_action" class="w-100 mv2" placeholder="<?php translate($GLOBALS["language"], "call_to_action"); ?>" required="required"></textarea>
+                        <input class="mv2" name="add-project" type="submit" value="<?php translate($GLOBALS["language"], "add_project"); ?>" />
                     </article>
                 </form>
-                <?php display_projects($GLOBALS["language"], $GLOBALS["department"]); ?>
+                <?php display_projects($GLOBALS["language"], $GLOBALS["department"], true); ?>
             </section>
         </div>
         <script src="filters.js"></script>

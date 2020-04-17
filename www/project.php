@@ -21,7 +21,7 @@ class Project {
 
     public function html() {
 ?>
-<article class="mw100 center bl bw2 ph3 pv1 mv3">
+<article class="mw100 bl bw2 ph3 pv1 mv3">
     <h2><?php print $this->title ?></h2>
     <h3><?php print $this->researcher ?></h3>
     <h4><?php print $this->department ?></h4>
@@ -30,9 +30,23 @@ class Project {
 <?php
     }
 
+    public function html_form() {
+?>
+<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input class="dn" type="hidden" name="project" value="<?php print $this->id; ?>" />
+    <div class="w-100 flex items-center justify-between">
+        <?php
+        $this->html();
+        ?>
+        <input class="h3 w4 ba bw2 b--red" name="delete-project" type="submit" value="<?php translate($GLOBALS["language"], "delete"); ?>" />
+    </div>
+</form>
+<?php
+    }
+
 }
 
-function display_projects($language, $department) {
+function display_projects($language, $department, $editable) {
     $projects = get_projects($language, $department);
 
     if (count($projects) <= 0) {
@@ -42,9 +56,13 @@ function display_projects($language, $department) {
 <?php
     }
 
-    foreach ($projects as $project) {
-        $project->html();
-    }
+    if ($editable) {
+        foreach ($projects as $project)
+            $project->html_form();
+    } else
+        foreach ($projects as $project)
+            $project->html();
+
 }
 
 ?>

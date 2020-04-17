@@ -7,7 +7,7 @@
         <div class="app">
         <?php nav_bar() ?>
         <section id="projects">
-            <?php display_projects($GLOBALS["language"], $GLOBALS["department"]); ?>
+            <?php display_projects($GLOBALS["language"], $GLOBALS["department"], false); ?>
         </section>
         </div>
         <script src="filters.js"></script>
