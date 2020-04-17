@@ -3,6 +3,9 @@
 CREATE DATABASE IF NOT EXISTS realm CHARACTER SET utf8mb4;
 USE realm;
 
+// For issue related to structure
+SET FOREIGN_KEY_CHECKS=0;
+
 \! echo "Creating Department tables:"
 CREATE TABLE IF NOT EXISTS Language (
     id          INT             UNIQUE NOT NULL AUTO_INCREMENT,
