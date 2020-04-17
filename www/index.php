@@ -1,7 +1,7 @@
 <?php require_once("header.php"); ?>
 <?php require_once("project.php"); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php print $GLOBALS["language"] ?>">
     <?php head() ?>
     <body class="ma2">
         <?php nav_bar() ?>
