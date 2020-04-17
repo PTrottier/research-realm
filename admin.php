@@ -1,15 +1,13 @@
 <?php require_once("header.php"); ?>
 <?php require_once("project.php"); ?>
 <?php require_once("translations.php"); ?>
-
 <?php
-
 // Handle new project
 if (isset($_POST["add-project"])) {
     // Get project information
     $language = $_POST["language"];
     $title = $_POST["title"];
-    $researcher = $_POST["title"];
+    $researcher = $_POST["researcher"];
     $department = $_POST["department"];
     $call_to_action = $_POST["call_to_action"];
 
@@ -69,7 +67,7 @@ function is_valid_administrator($username, $password) {
     // The user must prove that it is valid administrator, therefore by default it is invalid
     $is_valid = false;
     // Get configuration file for adminitration information
-    $configuration = parse_ini_file("../realm.ini", true)["administration"];
+    $configuration = parse_ini_file("/home/cosc2206/realm.ini", true)["administration"];
 
     if ($username === $configuration["username"]
         && password_verify($password, $configuration["password"])) {

@@ -2,7 +2,7 @@
 
 function db_connect() {
     // Get configuration file for database information
-    $configuration = parse_ini_file("../realm.ini", true)["database"];
+    $configuration = parse_ini_file("/home/cosc2206/realm.ini", true)["database"];
     $driver   = $configuration["driver"];
     $hostname = $configuration["hostname"];
     $username = $configuration["username"];

@@ -14,9 +14,7 @@ if (isset($_GET["department"]))
     $GLOBALS["department"] = $_GET["department"];
 else
     $GLOBALS["department"] = -1;
-?>
 
-<?php
 // Default is no page name
 function head($page = "")
 {
@@ -61,9 +59,7 @@ function head($page = "")
 </head>
 <?php
 }
-?>
 
-<?php
 function select($current, $value)
 {
   if ($current === $value)
