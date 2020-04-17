@@ -21,7 +21,7 @@ class Project {
 
     public function html() {
 ?>
-<article class="mw100 center bl bw3 ph3 pv2 mv2">
+<article class="mw100 center bl bw2 ph3 pv1 mv3">
     <h2><?php print $this->title ?></h2>
     <h3><?php print $this->researcher ?></h3>
     <h4><?php print $this->department ?></h4>
