@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Department (
 );
 
 \! echo "Creating Project table:"
-CREATE TABLE IF NOT EXISTS project (
+CREATE TABLE IF NOT EXISTS Project (
     id              INT         UNIQUE NOT NULL AUTO_INCREMENT,
     language_id     INT         NOT NULL,
     title           TEXT        NOT NULL,
