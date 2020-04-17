@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html lang="<?php print $GLOBALS["language"] ?>">
     <?php head() ?>
-    <body class="ma2">
+    <body class="mh2">
+        <div class="app">
         <?php nav_bar() ?>
         <section id="projects">
-            <?php //project_section(); ?>
+            <?php display_projects($GLOBALS["language"], $GLOBALS["department"]); ?>
         </section>
+        </div>
         <script src="filters.js"></script>
     </body>
 </html>

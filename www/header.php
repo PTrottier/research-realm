@@ -1,4 +1,5 @@
 <?php require_once("translations.php"); ?>
+<?php require_once("db.php"); ?>
 <?php 
 $lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
 $acceptLang = ["en", "fr"]; 
@@ -7,6 +8,10 @@ if (isset($_GET["language"])) {
     $GLOBALS["language"] = $_GET["language"];
 } else {
     $GLOBALS["language"] = $lang;
+}
+
+if (isset($_GET["department"])) {
+    $GLOBALS["department"] = $_GET["department"];
 }
 ?>
 
@@ -29,11 +34,27 @@ function head($page = "")
         ?>
     </title>
   <link rel="shortcut icon" href="logo.png" />
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@^4.11.1/css/tachyons.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css" />
   <link href="https://fonts.googleapis.com/css?family=B612:400,400i,700,700i&display=swap" rel="stylesheet"> 
   <style>
+    html, body {
+        height: 100%;
+    }
+
     body {
-      font-family: 'B612', sans-serif;
+        font-family: 'B612', sans-serif;
+    }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #projects {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        min-height: 0px;
     }
   </style>
 </head>
@@ -45,35 +66,44 @@ function head($page = "")
 function select($current, $value)
 {
   if ($current === $value)
-    print 'selected = "selected"';
+    print 'selected="selected"';
 }
 
 function nav_bar()
 {
-$language = isset($_GET["language"]) ? $_GET["language"] : "";
-$department = isset($_GET["department"]) ? $_GET["department"] : "";
+$url_department = isset($_GET["department"]) ? $_GET["department"] : "";
 ?>
 
-<header>
+<header class="bb bw1 nav">
     <nav class="flex flex-column flex-row-l items-center justify-between-l">
         <a class="dib mw5" href="<?php echo $_SERVER['PHP_SELF']; ?>">
             <img id="logo" class="dib" alt="<?php translate($GLOBALS["language"], "research_realm"); ?>" src="logo_text.svg" />
         </a>
-        <form class="w-100 w-auto-l" id="filters" method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form class="w-100 w-auto-l mb2 mb0" id="filters" method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="flex flex-column flex-row-l items-center-l">
                 <label class="mr1-l" for="language"><?php translate($GLOBALS["language"], "language"); ?></label>
                 <select id="language" class="mb2 mb0-l mr3-l" name="language">
-                    <option value="en" <?php select($GLOBALS["language"], "en") ?>>English</option>
-                    <option value="fr" <?php select($GLOBALS["language"], "fr") ?>>Français</option>
+<?php
+foreach (get_languages() as $language) {
+?>
+                    <option value="<?php print $language->shortcode ?>" <?php select($GLOBALS["language"], $language->shortcode) ?>><?php print $language->name ?></option>
+<?php
+}
+?>
                 </select>
                 <label class="mr1-l" for="department"><?php translate($GLOBALS["language"], "department"); ?></label>
                 <select id="department" name="department">
-                    <option value="cosc" <?php select($department, "cosc") ?>>Computer Science</option>
-                    <option value="kin" <?php select($department, "kin") ?>>Kinesiology</option>
-                    <option value="psych" <?php select($department, "psych") ?>>Psychology</option>
+                    <option value="-1" <?php select($url_department, "-1") ?>><?php translate($GLOBALS["language"], "department_all"); ?></option>
+<?php
+foreach (get_departments($GLOBALS["language"]) as $department) {
+?>
+                    <option value="<?php print $department->id ?>" <?php select($url_department, $department->id) ?>><?php print $department->name ?></option>
+<?php
+}
+?>
                 </select>
-                <input id="btn-reset" type="reset" value="<?php translate($GLOBALS["language"], "reset"); ?>" />
-                <input id="btn-submit" type="submit" value="<?php translate($GLOBALS["language"], "submit"); ?>" />
+                <input id="filter-reset" type="reset" value="<?php translate($GLOBALS["language"], "reset"); ?>" />
+                <input id="filter-submit" type="submit" value="<?php translate($GLOBALS["language"], "submit"); ?>" />
             </div>
         </form>
     </nav>

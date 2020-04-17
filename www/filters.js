@@ -1,7 +1,7 @@
 window.addEventListener("load", function() {
     // Hide the Reset and Submit buttons as JS will handle auto submitting the form
-    document.getElementById("btn-reset").style.display = "none";
-    document.getElementById("btn-submit").style.display = "none";
+    document.getElementById("filter-reset").style.display = "none";
+    document.getElementById("filter-submit").style.display = "none";
 
     let filters = document.getElementById("filters");
 
