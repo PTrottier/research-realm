@@ -4,15 +4,16 @@
 $lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
 $acceptLang = ["en", "fr"]; 
 $lang = in_array($lang, $acceptLang) ? $lang : "en";
-if (isset($_GET["language"])) {
-    $GLOBALS["language"] = $_GET["language"];
-} else {
-    $GLOBALS["language"] = $lang;
-}
 
-if (isset($_GET["department"])) {
+if (isset($_GET["language"]))
+    $GLOBALS["language"] = $_GET["language"];
+else
+    $GLOBALS["language"] = $lang;
+
+if (isset($_GET["department"]))
     $GLOBALS["department"] = $_GET["department"];
-}
+else
+    $GLOBALS["department"] = -1;
 ?>
 
 <?php
