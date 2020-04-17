@@ -1,75 +1,68 @@
-<?php require_once( 'db.php' );
-?>
+<?php require_once("db.php"); ?>
 <?php
+class Project {
+    private $id;
+    private $title;
+    private $department;
+    private $researcher;
+    private $call_to_action;
 
-function project_section() {
-    if ( isset( $_GET['id'] ) ) {
-        $id = $_GET['id'];
-        $conn = db_connect();
-        $project = get_project( $conn, $id );
-        project( $project['department'], $project['title'], $project['call_for_action'], $project['abstract'], $project['author'], $project['reviewer'] );
-        db_close( $conn );
-    } else if ( isset( $_GET['department'] ) ) {
-        $conn = db_connect();
-        $result = get_projects_by_department( $conn, $_GET['department'] );
-        if ( $result->num_rows > 0 ) {
-            while ( $project = $result->fetch_assoc() )
-            display_project_list_item( $project['id'], $project['department'], $project['title'], $project['call_for_action'] );
-        } else {
-            print '<p>No projects for ' . $_GET['department'] . '.</p>';
-            print "<p>Il n'y a pas de projects pour " . $_GET['department'] . '.</p>';
-
-        }
-        db_close( $conn );
-    } else {
-        $conn = db_connect();
-        $result = get_projects( $conn );
-        if ( $result->num_rows > 0 )
-        while ( $project = $result->fetch_assoc() )
-        display_project_list_item( $project['id'], $project['department'], $project['title'], $project['call_for_action'] );
-        db_close( $conn );
+    function __construct($id, $title, $department, $researcher, $call_to_action) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->department = $department;
+        $this->researcher = $researcher;
+        $this->call_to_action = $call_to_action;
     }
-}
-?>
-<?php function project( $department, $title, $call_for_action, $abstract, $author, $reviewer ) {
-    ?>
-    <article>
-    <h2><?php print $title ?></h2>
-    <h3><?php print $department ?></h3>
-    <p><?php print $call_for_action ?></p>
-    <p><?php print $abstract ?></p>
-    <p><?php print $author ?></p>
-    <p><?php print $reviewer ?></p>
-    </article>
-    <?php
-}
-?>
 
-<?php function display_project_list_item( $id, $department, $title, $call_for_action ) {
-
-    ?>
-
-    <a href = "index.php?id=<?php print $id ?>">
-    <article>
-    <h2><?php print $title ?></h2>
-    <h3><?php print $department ?></h3>
-    <p><?php print $call_for_action ?></p>
-    </article>
-    </a>
-
-    <?php
-}
-
-?>
-
-<?php function display_projects( $count ) {
-    $title = 'Title';
-    $department = 'Department';
-    $call_for_action = 'Call for Action';
-    for ( $i = 0; $i < $count - 1; $i++ ) {
-        display_project_list_item( $department . $i, $title . $i, $call_for_action . $i );
-        print '<hr />\n';
+    public function get_id() {
+        return $this->id;
     }
-    display_project_list_item( $department . ( $count - 1 ), $title . ( $count - 1 ), $call_for_action . ( $count - 1 ) );
+
+    public function html() {
+?>
+<article class="mw100 bl bw2 ph3 pv1 mv3">
+    <h2><?php print $this->title ?></h2>
+    <h3><?php print $this->researcher ?></h3>
+    <h4><?php print $this->department ?></h4>
+    <p><?php print $this->call_to_action ?></p>
+</article>
+<?php
+    }
+
+    public function html_form() {
+?>
+<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input class="dn" type="hidden" name="project" value="<?php print $this->id; ?>" />
+    <div class="w-100 flex items-center justify-between">
+        <?php
+        $this->html();
+        ?>
+        <input class="h3 w4 ba bw2 b--red" name="delete-project" type="submit" value="<?php translate($GLOBALS["language"], "delete"); ?>" />
+    </div>
+</form>
+<?php
+    }
+
 }
+
+function display_projects($language, $department, $editable) {
+    $projects = get_projects($language, $department);
+
+    if (count($projects) <= 0) {
+?>
+<p>
+        <h2 class="tc"><?php translate($GLOBALS["language"], "no_projects") ?></h2>
+<?php
+    }
+
+    if ($editable) {
+        foreach ($projects as $project)
+            $project->html_form();
+    } else
+        foreach ($projects as $project)
+            $project->html();
+
+}
+
 ?>
